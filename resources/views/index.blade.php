@@ -1,94 +1,22 @@
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel='shortcut icon' type='image/x-icon' href='{{ asset('img/favicon.ico') }}' />
+		<link rel="icon" href="{{ asset('img/favicon.ico') }}">
+
+		{{-- CSRF Token --}}
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<meta name="author" content="Bangladesh Computer Council">
+		<title>{{ config('app.name', 'NDC') }}</title>
 		<meta name="robots" content="noindex, nofollow">
 
-		<title>Login page - Bootsnipp.com</title>
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-		<style type="text/css">
-		body {
-		font-family: "Lato", sans-serif;
-	}
-
-
-
-	.main-head{
-		height: 150px;
-		background: #FFF;
-	   
-	}
-
-	.sidenav {
-		height: 100%;
-		background-color: #000;
-		overflow-x: hidden;
-		padding-top: 20px;
-	}
-
-
-	.main {
-		padding: 0px 10px;
-	}
-
-	@media screen and (max-height: 450px) {
-		.sidenav {padding-top: 15px;}
-	}
-
-	@media screen and (max-width: 450px) {
-		.login-form{
-			margin-top: 10%;
-		}
-
-		.register-form{
-			margin-top: 10%;
-		}
-	}
-
-	@media screen and (min-width: 768px){
-		.main{
-			margin-left: 40%; 
-		}
-
-		.sidenav{
-			width: 40%;
-			position: fixed;
-			z-index: 1;
-			top: 0;
-			left: 0;
-		}
-
-		.login-form{
-			margin-top: 80%;
-		}
-
-		.register-form{
-			margin-top: 20%;
-		}
-	}
-
-
-	.login-main-text{
-		margin-top: 20%;
-		padding: 60px;
-		color: #fff;
-	}
-
-	.login-main-text h2{
-		font-weight: 300;
-	}
-
-	.btn-black{
-		background-color: #000 !important;
-		color: #fff;
-	}
-</style>
-
-		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-		
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/login.css') }}" rel="stylesheet" type="text/css">
+		<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<script src="{{ asset('js/script.js') }}"></script>
 	</head>
 	<body>
 		<div class="sidenav">

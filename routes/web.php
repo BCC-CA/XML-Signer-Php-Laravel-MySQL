@@ -2,26 +2,31 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+//Not-Logged in Routes
+Route::group(['prefix' => '/','middleware' => []], function() {
+	Route::get('/', function () {
+		return view('index');
+	});
 
-Route::get('/', function () {
-    return view('index');
+	Route::get('login', [
+			'uses' => 'AuthController@index',
+			'as' => 'login'
+		]);
+	Route::post('post-login', 'AuthController@postLogin'); 
+	Route::get('registration', 'AuthController@registration');
+	Route::post('post-registration', 'AuthController@postRegistration'); 
 });
 
+//Logged in Routes
+Route::group(['prefix' => '/','middleware' => ['auth']], function() {
+	Route::get('dashboard', [
+			'uses' => 'AuthController@dashboard',
+			'as' => 'dashboard'
+		]);
+	Route::get('logout', [
+			'uses' => 'AuthController@logout',
+			'as' => 'logout'
+		]);
+});
 
-Route::get('login', 'AuthController@index');
-Route::post('post-login', 'AuthController@postLogin'); 
-Route::get('registration', 'AuthController@registration');
-Route::post('post-registration', 'AuthController@postRegistration'); 
-Route::get('dashboard', 'AuthController@dashboard'); 
-Route::get('logout', 'AuthController@logout');
 
