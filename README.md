@@ -2,3 +2,7 @@
 
 ## Commands
 
+Clear all DB with new data-
+
+	php artisan migrate:fresh --seed
+
