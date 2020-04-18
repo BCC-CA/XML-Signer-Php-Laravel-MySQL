@@ -27,6 +27,7 @@ Route::group(['prefix' => '/','middleware' => ['auth']], function() {
 			'uses' => 'AuthController@logout',
 			'as' => 'logout'
 		]);
+	Route::resource('leaves','LeaveApplicationController');
 });
 
 

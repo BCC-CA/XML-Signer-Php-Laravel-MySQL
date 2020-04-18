@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel='shortcut icon' type='image/x-icon' href='{{ asset('img/favicon.ico') }}' />
-		<link rel="icon" href="{{ asset('img/favicon.ico') }}">
+		<link rel='shortcut icon' type='image/x-icon' href='{{ asset('favicon.ico') }}' />
+		<link rel="icon" href="{{ asset('favicon.ico') }}">
 
 		{{-- CSRF Token --}}
 		<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -28,18 +28,32 @@
 		  <div class="main">
 			 <div class="col-md-6 col-sm-12">
 				<div class="login-form">
-				   <form>
-					  <div class="form-group">
-						 <label>User Name</label>
-						 <input type="text" class="form-control" placeholder="User Name">
-					  </div>
-					  <div class="form-group">
-						 <label>Password</label>
-						 <input type="password" class="form-control" placeholder="Password">
-					  </div>
-					  <button type="submit" class="btn btn-black">Login</button>
-					  <button type="submit" class="btn btn-secondary">Register</button>
-				   </form>
+					<form action="{{url('post-login')}}" method="POST">
+						{{ csrf_field() }}
+						<div class="form-group">
+							<label>Email</label>
+							<input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" >
+							@if ($errors->has('email'))
+								<span class="error">{{ $errors->first('email') }}</span>
+							@endif
+						</div>
+						<div class="form-group">
+							<label>Password</label>
+							<input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+							@if ($errors->has('password'))
+								<span class="error">{{ $errors->first('password') }}</span>
+							@endif
+						</div>
+						{{--
+						<button type="submit" class="btn btn-black">Login</button>
+						<button type="submit" class="btn btn-secondary">Register</button>
+						--}}
+						<button class="btn btn-lg btn-black btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Sign In</button>
+						<div class="text-center">
+							If you have an account?
+							<a class="small" href="{{url('registration')}}">Sign Up</a>
+						</div>
+					</form>
 				</div>
 			 </div>
 		  </div>    <script type="text/javascript">

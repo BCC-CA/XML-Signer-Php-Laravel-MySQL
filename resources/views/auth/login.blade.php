@@ -34,7 +34,7 @@
  
                   @if ($errors->has('email'))
                   <span class="error">{{ $errors->first('email') }}</span>
-                  @endif    
+                  @endif
                 </div> 
  
                 <div class="form-label-group">
