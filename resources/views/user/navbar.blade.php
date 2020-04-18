@@ -5,15 +5,24 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarCollapse">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			<li class="nav-item {{  strpos(Route::currentRouteName(), 'dashboard') !== false ? "active" : "" }}">
+				<a class="nav-link" href="{{ route('dashboard') }}">
+					Home <span class="sr-only">(current)</span>
+				</a>
+			</li>
+			<li class="nav-item {{  strpos(Route::currentRouteName(), 'leaves.') !== false ? "active" : "" }}">
+				<a class="nav-link" href="{{ route('leaves.index') }}">
+					Leave Application
+				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#">Link</a>
+				<a class="nav-link" href="{{ route('leaves.index') }}">Leave Application</a>
 			</li>
+			{{--
 			<li class="nav-item">
 				<a class="nav-link disabled" href="#">Disabled</a>
 			</li>
+			--}}
 		</ul>
 		<ul class="navbar-nav">
 			<li class="nav-item">

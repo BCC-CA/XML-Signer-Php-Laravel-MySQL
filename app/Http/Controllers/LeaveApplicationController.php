@@ -14,7 +14,10 @@ class LeaveApplicationController extends Controller
 	 */
 	public function index()
 	{
-		//
+		$leaves = LeaveApplication::latest()->paginate(5);
+
+		return view('leave_application.index',compact('leaves'))
+			->with('i', (request()->input('page', 1) - 1) * 5);
 	}
 
 	/**
@@ -24,7 +27,7 @@ class LeaveApplicationController extends Controller
 	 */
 	public function create()
 	{
-		//
+		return view('leave_application.create');
 	}
 
 	/**
@@ -35,7 +38,13 @@ class LeaveApplicationController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		//
+		/*$request->validate([
+			'name' => 'required',
+			'detail' => 'required',
+		]);*/
+		LeaveApplication::create($request->all());
+		return redirect()->route('leaves.index')
+						->with('success','Leave Application Added successfully.');
 	}
 
 	/**
@@ -46,7 +55,7 @@ class LeaveApplicationController extends Controller
 	 */
 	public function show(LeaveApplication $leaveApplication)
 	{
-		//
+		return view('leave_application.show',compact('leaveApplication'));
 	}
 
 	/**
@@ -57,7 +66,7 @@ class LeaveApplicationController extends Controller
 	 */
 	public function edit(LeaveApplication $leaveApplication)
 	{
-		//
+		return view('leave_application.edit',compact('leaveApplication'));
 	}
 
 	/**
@@ -69,7 +78,15 @@ class LeaveApplicationController extends Controller
 	 */
 	public function update(Request $request, LeaveApplication $leaveApplication)
 	{
-		//
+		/*$request->validate([
+			'name' => 'required',
+			'detail' => 'required',
+		]);*/
+
+		$leaveApplication->update($request->all());
+
+		return redirect()->route('leave_application.index')
+						->with('success','Product updated successfully');
 	}
 
 	/**
@@ -80,6 +97,8 @@ class LeaveApplicationController extends Controller
 	 */
 	public function destroy(LeaveApplication $leaveApplication)
 	{
-		//
+		$leaveApplication->delete();
+        return redirect()->route('leave_application.index')
+                        ->with('success','Product deleted successfully');
 	}
 }
