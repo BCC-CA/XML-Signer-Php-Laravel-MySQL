@@ -15,10 +15,10 @@
 					Leave Application
 				</a>
 			</li>
+			{{--
 			<li class="nav-item">
 				<a class="nav-link" href="{{ route('leaves.index') }}">Leave Application</a>
 			</li>
-			{{--
 			<li class="nav-item">
 				<a class="nav-link disabled" href="#">Disabled</a>
 			</li>

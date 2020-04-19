@@ -26,21 +26,27 @@
 		<tr>
 			<th>No</th>
 			<th>Name</th>
-			<th>Details</th>
+			<th>Date</th>
 			<th width="280px">Action</th>
 		</tr>
 		@foreach ($leaves as $leave)
 		<tr>
 			<td>{{ ++$i }}</td>
 			<td>{{ $leave->name }}</td>
-			<td>{{ $leave->detail }}</td>
 			<td>
-				<form action="{{ route('leaves.destroy',$product->id) }}" method="POST">
+				{{ \Carbon\Carbon::parse($leave->leave_start)->format('d/m/Y')}}
+				to
+				{{ \Carbon\Carbon::parse($leave->leave_end)->format('d/m/Y')}}
+			</td>
+			<td>
+				<form action="{{ route('leaves.destroy',$leave->id) }}" method="POST">
 
-					<a class="btn btn-info" href="{{ route('leaves.show',$product->id) }}">Show</a>
-	
-					<a class="btn btn-primary" href="{{ route('leaves.edit',$product->id) }}">Edit</a>
-   
+					<a class="btn btn-info" href="{{ route('leaves.show',$leave->id) }}">Show</a>
+					{{--
+					<a class="btn btn-primary" href="{{ route('leaves.edit',$leave->id) }}">Edit</a>
+					--}}
+					<a class="btn btn-primary" file_id="{{ $leave->id }}">Sign</a>
+
 					@csrf
 					@method('DELETE')
 	  

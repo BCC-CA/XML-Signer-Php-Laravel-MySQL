@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\LeaveApplication;
 use Illuminate\Http\Request;
+use Auth;
 
 class LeaveApplicationController extends Controller
 {
@@ -42,6 +43,9 @@ class LeaveApplicationController extends Controller
 			'name' => 'required',
 			'detail' => 'required',
 		]);*/
+		$request['applicant_id'] = Auth::user()->id;
+		//dd($request);
+		//return $request->all();
 		LeaveApplication::create($request->all());
 		return redirect()->route('leaves.index')
 						->with('success','Leave Application Added successfully.');
@@ -53,8 +57,9 @@ class LeaveApplicationController extends Controller
 	 * @param  \App\LeaveApplication  $leaveApplication
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(LeaveApplication $leaveApplication)
+	public function show($id)
 	{
+		$leaveApplication = LeaveApplication::find($id);
 		return view('leave_application.show',compact('leaveApplication'));
 	}
 

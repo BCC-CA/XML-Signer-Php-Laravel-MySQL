@@ -29,7 +29,7 @@ class CreateLeaveApplicationsTable extends Migration
 			$table->text('address_during_leave');
 			$table->string('phone_no');
 
-			$table->unsignedBigInteger('prev_file_id')->default(null);
+			$table->unsignedBigInteger('prev_file_id')->nullable();
 			$table->foreign('prev_file_id')->references('id')->on('leave_applications')->onUpdate('cascade')->onDelete('cascade');
 
 			$table->timestamps();
