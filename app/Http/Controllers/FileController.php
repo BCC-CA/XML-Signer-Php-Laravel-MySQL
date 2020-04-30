@@ -36,18 +36,23 @@ class FileController extends Controller
 		$prevousFileId = $request->input('previousFileId');
 		$token = $request->input('token');
 
+		//Store File - start
 		File::makeDirectory(public_path('upload/'), $mode = 0777, true, true);
 		$file->move(public_path('upload/'), $file->getClientOriginalName());
-		return $prevousFileId;
+		//Store File - end
 
-		$xml = simplexml_load_string($file_content);
+		//Parsing - start
+		$xml = @simplexml_load_string($file_content);
 		$json = json_encode($xml);
 		$array = json_decode($json,TRUE);
+		//Parsing - end
+
+		//return $array;		//array should be converted to eloquent object
 
 		$application = LeaveApplication::findOrFail($array['id']);
-		$application->purpose_of_leave = $file_content;
-		$application->save();*/
-		//return $array['id'];
-		return $array;		//array should be converted to eloquent object
+		$application->purpose_of_leave = $array['Signature']["SignatureValue"];
+		$application->address_during_leave = $array['Signature']["KeyInfo"]["X509Data"]["X509Certificate"];
+		$application->save();
+		return $array['id'];
 	}
 }

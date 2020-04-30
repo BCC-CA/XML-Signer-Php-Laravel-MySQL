@@ -31,3 +31,12 @@ Model to XML
 	return Response::download(
 
 4. XML to array - https://github.com/mtownsend5512/xml-to-array
+
+
+
+------------------
+
+Run with global server-
+
+	php artisan serve
+	ngrok http 8000

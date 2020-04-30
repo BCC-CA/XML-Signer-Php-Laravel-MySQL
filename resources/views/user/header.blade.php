@@ -6,6 +6,7 @@
 
 	{{-- CSRF Token --}}
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="base-url" content="{{ URL::to('/') }}">
 	<meta name="author" content="Bangladesh Computer Council">
 	<title>{{ config('app.name', 'NDC') }}</title>
 	<meta name="robots" content="noindex, nofollow">

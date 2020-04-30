@@ -32,8 +32,7 @@ $(document).ready(function() {
 				id: $(this).attr('file_id'),
 				token: "token_not_implemented",
 				downloadUrl: $(this).attr('url'),
-				//uploadUrl: window.location.protocol + "//" + window.location.host + "/api/XmlFiles/upload",
-				uploadUrl: "http://localhost/XML-Signer/public/api/XmlFiles/upload",
+				uploadUrl: $('meta[name=base-url]').attr("content") + "/api/XmlFiles/upload",
 				reason: "Anything You Give",
 				procedureSerial: 1
 			},
