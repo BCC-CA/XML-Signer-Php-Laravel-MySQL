@@ -30,4 +30,14 @@ Route::group(['prefix' => '/','middleware' => ['auth']], function() {
 	Route::resource('leaves','LeaveApplicationController');
 });
 
-
+//APIs
+Route::group(['prefix' => '/api/','middleware' => []], function() {
+	Route::get('XmlFiles/download/{token}/{id}', [
+			'uses' => 'FileController@download',
+			'as' => 'api.download'
+		]);
+	Route::post('XmlFiles/upload', [
+			'uses' => 'FileController@upload',
+			'as' => 'api.upload'
+		]);
+});

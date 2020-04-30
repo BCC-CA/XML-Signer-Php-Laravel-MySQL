@@ -45,7 +45,7 @@
 					{{--
 					<a class="btn btn-primary" href="{{ route('leaves.edit',$leave->id) }}">Edit</a>
 					--}}
-					<a class="btn btn-primary" file_id="{{ $leave->id }}">Sign</a>
+					<a class="btn btn-primary sign_file" file_id="{{ $leave->id }}" url="{{ route('api.download',['id'=>$leave->id,'token'=>'token_not_implemented']) }}">Sign</a>
 
 					@csrf
 					@method('DELETE')

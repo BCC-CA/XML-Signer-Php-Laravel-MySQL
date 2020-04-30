@@ -12,11 +12,11 @@ $(document).ready(function() {
 
 	$(".sign_file").click(function() {
 		var id = $(this).attr('file_id');
-		var token = $.ajax({
+		/*var token = $.ajax({
 			type: "GET",
 			url: "/api/XmlFiles/token/" + id,
 			async: false
-		}).responseText;
+		}).responseText;*/
 
 		var baseUrl = window.location.protocol + "//" + window.location.host + "/";
 		$.ajax({
@@ -29,10 +29,11 @@ $(document).ready(function() {
 			dataType: 'jsonp',
 			async: false,
 			data: {
-				id: id,
-				token: token,
-				downloadUrl: baseUrl + "api/XmlFiles/" + token + "/" + id,
-				uploadUrl: baseUrl + "api/XmlFiles",
+				id: $(this).attr('file_id'),
+				token: "token_not_implemented",
+				downloadUrl: $(this).attr('url'),
+				//uploadUrl: window.location.protocol + "//" + window.location.host + "/api/XmlFiles/upload",
+				uploadUrl: "http://localhost/XML-Signer/public/api/XmlFiles/upload",
 				reason: "Anything You Give",
 				procedureSerial: 1
 			},
